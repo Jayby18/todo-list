@@ -1,22 +1,14 @@
-How to make it look like the one on Medium?
-
-How does React work?
-I can make this look a lot better with that instead of CSS, probably.
-
 Could add points for when you complete task.
 Then there should be separate remove buttons too.
 
-Data needs to be saved in cookies.
-The problem is when to update cookies. It makes most sense to update with every data change.
-But the problem is that now, I'm appending to cookies. I could maybe find a way to change one bit.
-
-So apparently cookies don't work locally. The website has to be on a server. I will be using bitballoon for this.
+Online URL:
 http://java-todo-list.bitballoon.com/
-
-Right now items are saved in cookie with the string value "[object Object]".
-So I will probably have to save every single value of every single item inside cookie.
 
 Items will probably need some sort of code to store their values.
 Saving every value separately is a lot more work.
 
 item01=title_priority_duedate_state_arrayLocation
+
+I still need to implement priority and due date. And possibly points.
+Priority and due date are already in the item object, but still need to get visual components.
+Points will have to be made from scratch, because there's nothing about them yet.
