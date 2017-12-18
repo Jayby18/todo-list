@@ -18,7 +18,8 @@ function OnNewItem () {
   items[i] = new item(input[0], input[1], input[2], i);  // Creates new item and passes input into parameters.
   var currentItem = items[i];                                   // Creates temporary variable to access current item more easily
 
-  var cookieCode = currentItem.title + "_" + currentItem.priority + "_" + currentItem.dueDate + "_" + currentItem.state + "_" + currentItem.arrayLocation;
+  var cookieCode = currentItem.title + "_" + currentItem.priority + "_" 
+    + currentItem.dueDate + "_" + currentItem.state + "_" + currentItem.arrayLocation;
   CreateCookie(`item${i}`, cookieCode);
 
   NewItemElement(currentItem, cookieCode);
@@ -60,7 +61,8 @@ function OnItemClick (clicked_id) {
   GetItemThroughElement(itemElement).state = "Completed";
 
   var currentItem = GetItemThroughElement(itemElement);
-  var cookieCode = currentItem.title + "_" + currentItem.priority + "_" + currentItem.dueDate + "_" + currentItem.state + "_" + currentItem.arrayLocation;
+  var cookieCode = currentItem.title + "_" + currentItem.priority + "_" 
+    + currentItem.dueDate + "_" + currentItem.state + "_" + currentItem.arrayLocation;
   CreateCookie(`item${currentItem.arrayLocation}`, cookieCode);
 }
 
@@ -72,7 +74,8 @@ function OnCompleteItemClick (clicked_id) {
   itemElement.parentNode.removeChild(itemElement);
 
   var currentItem = GetItemThroughElement(itemElement);
-  var cookieCode = currentItem.title + "_" + currentItem.priority + "_" + currentItem.dueDate + "_" + currentItem.state + "_" + currentItem.arrayLocation;
+  var cookieCode = currentItem.title + "_" + currentItem.priority + "_" 
+    + currentItem.dueDate + "_" + currentItem.state + "_" + currentItem.arrayLocation;
   CreateCookie(`item${currentItem.arrayLocation}`, cookieCode);
 }
 
@@ -101,7 +104,7 @@ function ReadCookie (cookieName) {
   return null;
 }
 
-// Check for the various File API support
+/* Check for the various File API support */
 if (window.File && window.FileReader && window.FileList) {
   // The File APIs are fully supported in this browser.
 } else {
@@ -123,7 +126,8 @@ if(ReadCookie("ItemArrayIndex") >= 0) {
     // Read cookies of every single item
     var item_cookie_code = ReadCookie(`item${n}`);
     var item_cookie_code_segments = item_cookie_code.split("_");
-    items[n] = new item(item_cookie_code_segments[0], item_cookie_code_segments[1], item_cookie_code_segments[2], item_cookie_code_segments[4]);
+    items[n] = new item(item_cookie_code_segments[0], item_cookie_code_segments[1], item_cookie_code_segments[2], 
+      item_cookie_code_segments[4]);
 
     NewItemElement(items[n], item_cookie_code);
   }

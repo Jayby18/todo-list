@@ -12,3 +12,6 @@ item01=title_priority_duedate_state_arrayLocation
 I still need to implement priority and due date. And possibly points.
 Priority and due date are already in the item object, but still need to get visual components.
 Points will have to be made from scratch, because there's nothing about them yet.
+
+TODO: Add the ability to enter a new item with the enter key instead of with that ugly buttons
+TODO: Implement priority and duedate
