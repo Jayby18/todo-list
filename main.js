@@ -10,20 +10,30 @@ function item (title, priority, dueDate, arrayLocation) {
 
 /* Function for creating a new item. Not the item constructor. */
 function OnNewItem () {
+  // Input is put into an array here
   var input = new Array(4)                                      // Creates new input array
-  input[0] = document.getElementById("inputbar").value;         // Sets input[0], so the title, equal to the value inside the input box
+  var inputBar = document.getElementById("inputbar").value;
+  var inputTitle = inputBar;
+  var inputPriority = inputBar;
+  input[0] = inputTitle.split("!").shift();
+  input[1] = inputPriority.split("!").pop();
+
   document.getElementById("inputbar").value = null;
 
+  // New item is created here and input is put into it
   i = items.length;                                             // Sets index to current item. Might be unnecessary code.
   items[i] = new item(input[0], input[1], input[2], i);  // Creates new item and passes input into parameters.
   var currentItem = items[i];                                   // Creates temporary variable to access current item more easily
 
+  // Cookie for item is created here with cookieCode
   var cookieCode = currentItem.title + "_" + currentItem.priority + "_" 
     + currentItem.dueDate + "_" + currentItem.state + "_" + currentItem.arrayLocation;
   CreateCookie(`item${i}`, cookieCode);
 
+  // Item's element is created here
   NewItemElement(currentItem, cookieCode);
 
+  // Updates the index so the next item is in the right spot
   i++;                                                          // Increments index to prepare for next item
   CreateCookie("ItemArrayIndex", i);
 }
@@ -32,19 +42,27 @@ function NewItemElement (currentItem, currentCookieCode) {
   var itemElement = document.createElement("div");              // Creates item element
   var currentCookieCode_segments = currentCookieCode.split("_");
 
-  switch(currentCookieCode_segments[3]) {
-    case "Active":
-      itemElement.setAttribute("class", "item");                    // Sets item element class to item
-      itemElement.setAttribute("onclick", "OnItemClick(this.id)");  // Sets click event for element
+  var backgroundColor;
+
+  itemElement.setAttribute("class", "item");
+  itemElement.setAttribute("onclick", "OnItemClick(this.id)");
+
+  switch(currentCookieCode_segments[1]) {
+    case "1":
+      backgroundColor = "#f77e7e";
       break;
-    case "Completed":
-      itemElement.setAttribute("class", "item_completed");                    // Sets item element class to item
-      itemElement.setAttribute("onclick", "OnCompleteItemClick(this.id)");  // Sets click event for element
+    case "2":
+      backgroundColor = "#f7aa7d";
       break;
-    case "Removed":
-      OnCompleteItemClick(itemElement.id);
+    case "3":
+      backgroundColor = "#f7de7d";
+      break;
+    default:
+      backgroundColor = "#ffffff";
       break;
   }
+
+  itemElement.setAttribute("style", `background-color: ${backgroundColor}`);
   itemElement.setAttribute("id", `item ${currentItem.arrayLocation}`);  // Creates id for element
   var t = document.createTextNode(currentItem.title);           // Creates text for element
   itemElement.appendChild(t);                                   // Appends text to element
@@ -115,6 +133,8 @@ if (window.File && window.FileReader && window.FileList) {
 var items = new Array();
 var i = 0;
 
+AddEvent();
+
 if(ReadCookie("ItemArrayIndex") == null) {
   CreateCookie("ItemArrayIndex", i);
 }
@@ -133,16 +153,12 @@ if(ReadCookie("ItemArrayIndex") >= 0) {
   }
 }
 
-window.addEventListener("click", function () {
-  alert("Click.");
-});
-
-window.addEventListener("keypress", CheckForEnterPress(event));
-
-function CheckForEnterPress (event) {
-  alert("A key was pressed.");
-  if (/* event.keyCode == 8 && */ document.activeElement.id == "itemholder") {
-    Console.log("Enter was pressed.");
-    OnNewItem();
-  }
+/* MANAGES EVENTLISTENERS */
+function AddEvent() {
+  // Press enter key to enter an item:
+  document.addEventListener('keydown', function (event) {
+    if (event.keyCode == 13 && document.activeElement.id == "inputbar") {
+      OnNewItem();
+    }
+  });
 }
