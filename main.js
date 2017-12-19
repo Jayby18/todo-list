@@ -1,4 +1,4 @@
-/* Item object */
+/* ITEM OBJECT */
 function item (title, priority, dueDate, arrayLocation) {
   this.title = title;
   this.priority = priority;
@@ -53,7 +53,7 @@ function NewItemElement (currentItem, currentCookieCode) {
   currentItem.element = itemElement;                            // Sets item's element equal to itemElement
 }
 
-/* Completes item */
+/* COMPLETES ITEM */
 function OnItemClick (clicked_id) {
   var itemElement = document.getElementById(clicked_id);
   itemElement.setAttribute("class", "item_completed");
@@ -66,7 +66,7 @@ function OnItemClick (clicked_id) {
   CreateCookie(`item${currentItem.arrayLocation}`, cookieCode);
 }
 
-/* Removes element */
+/* REMOVES ELEMENT */
 function OnCompleteItemClick (clicked_id) {
   var itemElement = document.getElementById(clicked_id);
   GetItemThroughElement(itemElement).state = "Removed";
@@ -115,7 +115,7 @@ if (window.File && window.FileReader && window.FileList) {
 var items = new Array();
 var i = 0;
 
-if (ReadCookie("ItemArrayIndex") == null) {
+if(ReadCookie("ItemArrayIndex") == null) {
   CreateCookie("ItemArrayIndex", i);
 }
 
@@ -130,5 +130,19 @@ if(ReadCookie("ItemArrayIndex") >= 0) {
       item_cookie_code_segments[4]);
 
     NewItemElement(items[n], item_cookie_code);
+  }
+}
+
+window.addEventListener("click", function () {
+  alert("Click.");
+});
+
+window.addEventListener("keypress", CheckForEnterPress(event));
+
+function CheckForEnterPress (event) {
+  alert("A key was pressed.");
+  if (/* event.keyCode == 8 && */ document.activeElement.id == "itemholder") {
+    Console.log("Enter was pressed.");
+    OnNewItem();
   }
 }

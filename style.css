@@ -1,27 +1,38 @@
-/* PORTRAIT/MOBILE-ONLY SETTINGS */
-@media only screen and (orientation: portrait) {
+/* NORMAL SETTINGS */
+@media only screen and (orientation: landscape) {
   .item_holder {
-  background-color: white;
-  margin-left: 1%;
-  margin-right: 1%;
-  margin-top: 1%;
-  margin-bottom: 1;
-  border-top: 0px darkgrey;
-  border-top-style: solid;
+    background-color: white;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 45px;
+    margin-bottom: 10%;
+    border-top: 0px darkgrey;
+    border-top-style: solid;
   }
 }
 
-/* NORMAL SETTINGS */
-.item_holder {
-  background-color: white;
-  margin-left: 25%;
-  margin-right: 25%;
-  margin-top: 45px;
-  margin-bottom: 10%;
-  border-top: 0px darkgrey;
-  border-top-style: solid;
+/* PORTRAIT/MOBILE-ONLY SETTINGS */
+@media only screen and (orientation: portrait) {
+  .item_holder {
+    background-color: white;
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-top: 1%;
+    margin-bottom: 1;
+    border-top: 0px darkgrey;
+    border-top-style: solid;
+  }
+
+  h1 {
+    font-size: 120px !important;
+  }
+
+  .item_input, .item, .item_completed {
+    font-size: 60px !important;
+}
 }
 
+/* GENERAL SETTINGS */
 .item_input, .item, .item_completed {
   font-family: "Roboto", "Gotham", "Calibri";
   font-size: 40px;
