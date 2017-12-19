@@ -15,4 +15,5 @@ Points will have to be made from scratch, because there's nothing about them yet
 
 TODO: Implement priority and duedate
 
-ISSUE: "document" often does not work anymore
+ISSUE: "document" often does not work anymore, just in some cases
+ISSUE: addEventListener doesn't work
