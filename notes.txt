@@ -14,6 +14,7 @@ Priority and due date are already in the item object, but still need to get visu
 Points will have to be made from scratch, because there's nothing about them yet.
 
 TODO: Implement and duedate
+TODO: Add a favicon
 
 Right now, the controls are not very clear. You can't know that adding ! to the end can give you a priority.
 I need to change that somehow, without making it too unclear.
